@@ -5,47 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="script.js" defer></script>
     <title>Document</title>
 </head>
 <body>
     <div class="main-grid">
         <header class="head">
-            <div class="form">
-                <form id="addForm">
-                    <div class="getInput">
-                        <label for="f-title">Title</label>
-                        <input type="text" name="f-title" placeholder="Title" id="newTitle" required>
+            <span class="material-icons" id="plusBtn">add_circle</span>
+            <div id="modalPopup" class="modal">
+                <div class="modal-content">
+                    <div class="form"> 
+                        <form id="myForm">
+                            <div class="getInput">
+                                <label for="title">Title</label>
+                                <input type="text" name="title" placeholder="Title" id="title">
+                            </div>
+                            <div class="getInput">
+                                <label for="author">Author</label>
+                                <input type="text" name="author" placeholder="Author" id="author">
+                            </div>
+                            <div class="getInput">
+                                <label for="pages">Pages</label>
+                                <input type="text" name="pages" placeholder="Pages" id="pages">
+                            </div>
+                            <div class="getInput">
+                                <label for="read">Read</label>
+                                <input type="text" name="read" placeholder="Read or Not" id="read">
+                            </div>
+                            <div class="buttons">
+                                <span class="material-icons close">cancel</span>
+                                <span class="material-icons" id="addBtn">add_circle</span>
+                            </div>
+                        </form>
                     </div>
-                    <div class="getInput">
-                        <label for="f-author">Author</label>
-                        <input type="text" name="f-author" placeholder="Author" id="newAuthor" required>
-                    </div>
-                    <div class="getInput">
-                        <label for="f-pages">Pages</label>
-                        <input type="text" name="f-pages" placeholder="Pages" id="newPages" required>
-                    </div>
-                    <div class="getInput">
-                        <label for="f-read">Read:</label>
-                        <input type="text" name="f-read" placeholder="Read or Not" id="newRead">
-                    </div>
-                    <div class="buttons">
-                        <button type="button" id="addBtn">Add Book</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </div>   
         </header>
         <div class="content">
-            <div class="card"><p>Ciao</p></div>
-            <div class="card"><p>Ciao</p></div>
-            <div class="card"><p>Ciao</p></div>
-            <div class="card"><p>Ciao</p></div>
-            <div class="card"><p>Ciao</p></div>
-            <div class="card"><p>Ciao</p></div>
+            <!--
+            <div class="card">
+                <h4 id="card-title">Title</h4>
+                <h4 id="card-author">Author</h4>
+                <h4 id="card-pages">Pages</h4>
+                <h4 id="card-status">Status</h4>
+            </div>
+            -->
         </div>
+        <!--
         <footer class="foot">
             <p id="credits">made by <a href="https://github.com/0crw/library">crw</a></p>
         </footer>
-        
+        -->
     </div>    
 </html>
