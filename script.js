@@ -1,105 +1,102 @@
-const plusBtn = document.querySelector('#plusBtn');             // Modal openButton
-const closeBtn = document.getElementsByClassName('close')[0];   // Modal closeButton
-const modal = document.querySelector('#modalPopup');            // Modal by ID
-const addBtn = document.querySelector('#addBtn');               // Form Button
-const inputForm = document.querySelector('#myForm');            // Form => reset() in addBookToLibrary
-const bookContainer = document.querySelector('.content');       // Card Container to display books
-
 let myLibrary = [];
-let newBook;
+let book;
 
-// addEventListener to buttons
-addBtn.addEventListener('click', addBookToLibrary);
-plusBtn.addEventListener('click', showModal);
+const openBtn = document.getElementById('plusBtn');
+const newModal = document.getElementById('modalPopup');
+const addBtn = document.getElementById('addBtn');
+const closeBtn = document.getElementById('closeBtn');
+
+const form = document.getElementById('myForm');
+
+const title = document.getElementById('title');
+const author = document.getElementById('author');
+const pages = document.getElementById('pages');
+/* const read = document.getElementById('read'); */
+
+const bookBox = document.getElementById('library');
+
+
+openBtn.addEventListener('click', showModal);
 closeBtn.addEventListener('click', closeModal);
-
+addBtn.addEventListener('click', addBookToLibrary);
 
 function Book(title, author, pages, read) {
-
-    this.title  = title;
+    this.title = title;
     this.author = author;
-    this.pages  = pages;
-    this.read   = read;
-}
+    this.pages = pages;
+    this.read = read;
+};
 
 function addBookToLibrary() {
+    
+    book = new Book(title.value, author.value, pages.value, read.checked);
 
-    let title = document.querySelector('#title').value;
-    let author = document.querySelector('#author').value;
-    let pages = document.querySelector('#pages').value;         // take values from userInput
-    let read = document.querySelector('#read').value;
-    newBook = new Book(title, author, pages, read);             // create newBook using these values 
-    myLibrary.push(newBook);
-    showBook();                                                 // show newBook on display                                                
-    inputForm.reset();                                          // reset userInput after take the values
+    if (title.value == '' || author.value == '' || pages.value == '') {
+        alert('Make sure fill in all the required data');
+        return;
+    };
+
+    myLibrary.push(book);
+    form.reset();
+    closeModal();
+    showBook();
     console.table(myLibrary);
-    closeModal();                                               // auto-close modal after create newBook
-}
+};
 
-// display book in library
 function showBook() {
+    
+    const newCard = document.createElement('div');
+    newCard.classList.add('card');
+    bookBox.appendChild(newCard);
 
-    const removeOldCard = document.querySelectorAll('.card');   // remove old cards(node) to avoid duplication
-    for (let i = 0; i < removeOldCard.length; i++) {
-        removeOldCard[i].remove();
-    }
+    const bookTitle = document.createElement('p');
+    bookTitle.textContent = `${book.title}`;
+    newCard.appendChild(bookTitle);
 
-    myLibrary.forEach(myLibrary => {                            
-        const newCard = document.createElement('div');        
-        newCard.classList.add('card');                          // add the .card class to show books on display
-        bookContainer.appendChild(newCard);                     
+    const bookAuthor = document.createElement('p');
+    bookAuthor.textContent = `${book.author}`;
+    newCard.appendChild(bookAuthor);
 
-        for (let key in myLibrary) {                            // for each key present in myLibrary stamp respective value
-            const newPara = document.createElement('p');
-            newPara.textContent = (`${myLibrary[key]}`);
-            newCard.appendChild(newPara); 
-        }
-    }) 
-}
+    const bookPages = document.createElement('p');
+    bookPages.textContent = `${book.pages}`;
+    newCard.appendChild(bookPages);
 
+    const changeCard = document.createElement('span');
+    changeCard.textContent = 'bookmark';
+    changeCard.classList.add('material-icons', 'leftChange');
+    changeCard.addEventListener('click', () => {
+        if(newCard.classList.contains('card')){
+            newCard.classList.remove('card');
+            newCard.classList.add('cardRead');
+        } else {
+            newCard.classList.remove('cardRead');
+            newCard.classList.add('card');
+        };
+    });
+    newCard.appendChild(changeCard);
 
-// modal show/hide
+    
+    const removeBtn = document.createElement('span');
+    removeBtn.textContent = 'delete';
+    removeBtn.classList.add('material-icons', 'rightDelete');
+    removeBtn.addEventListener('click', () => {
+        removeBtn.parentNode.remove();
+        myLibrary.splice(myLibrary.indexOf(book),1);
+        console.table(myLibrary);
+    });
+    newCard.appendChild(removeBtn); 
+};
+
 function showModal() {
-    modal.style.display = 'block';
-}
+    newModal.style.display = 'block';
+};
 
 function closeModal() {
-    modal.style.display = 'none';
-}
+    newModal.style.display = 'none';
+};
 
 window.onclick = function(e) {
-    if (e.target == modal) {
-        modal.style.display = 'none';
-    }
-}
-
-
-
-
-/*
-function showBook() {
-    myLibrary.forEach(myLibrary) => {
-        const newCard =  document.createElement('div');
-        newCard.classList.add('card');
-        bookContainer.appendChild(newCard);
-
-        const textTitle = document.createElement('h4');
-        textTitle.textContent = newBook.title;
-        newCard.appendChild(textTitle);
-
-        const textAuthor = document.createElement('em');
-        textAuthor.textContent = newBook.author;
-        newCard.appendChild(textAuthor);
-
-        const textPages = document.createElement('p');
-        textPages.textContent = newBook.pages + " pages"
-        newCard.appendChild(textPages);
-    });
-}
-*/
-/*
-function displayLibrary() {
-    for(i = 0; i < myLibrary.length-1; i++) {
-    }
-}
-*/
+    if (e.target == newModal) {
+        newModal.style.display = 'none';
+    };
+};

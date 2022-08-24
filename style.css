@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+
+.card {
+    font-family: 'Aboreto', cursive;
+    font-size: 24px;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -5,11 +12,12 @@
 }
 
 :root {
-    --head: #fbd794;
-    --bg: #F5FDC6;
-    --books: #F5C396;
-    --seco: #34a2a4;
+    --head: #333;
+    --bg: #ededed
+    --books: #ededed;
+    --seco: #333;
 }
+
 
 .main-grid {
     display: grid;
@@ -28,7 +36,7 @@
     align-items: center;
     justify-content: center;
 
-    background-color: var(--head)
+    background-color: var(--head);
 }
 
 
@@ -52,23 +60,72 @@
     border-radius: 10px;
     border-left: 20px solid var(--seco);
 
-    background-color: #F5C396;
+    background-color: var(--books);
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-evenly;
+    align-items: flex-start;
 
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding-left: 20px;
+    /*
+    padding: 40px; try again
+    */
+    font-family: 'Aboreto', cursive;
+    font-size: 22px;
+
+    box-shadow: 10px 5px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 20px 10px 16px 0 rgba(0, 0, 0, 0.2);
     border-left: 10px solid var(--seco);
     /*border-right: 10px solid #34a2a4;
     border-left: 10px solid #34a2a4 ;
     */
+}
+
+.cardRead {
+    width: 300px;
+    height: 340px;
+    
+    border-radius: 10px;
+    border-left: 20px solid #db5461;
+
+    background-color: var(--books);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+
+    padding-left: 20px;
+    font-family: 'Aboreto', cursive;
+    font-size: 22px;
+
+    box-shadow: 10px 5px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.cardRead:hover {
+    box-shadow: 20px 10px 16px 0 rgba(0, 0, 0, 0.2);
+    border-left: 10px solid #db5461
+}
+
+.rightDelete {
+    position: relative;
+    left: 250px;
+    top: 20px;
+}
+
+.leftChange {
+    position: relative;
+    top: 81px;
+}
+
+.cardRead .leftChange.material-icons {
+    color: #db5461
 }
 
 
@@ -94,7 +151,8 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: rgba(245, 195, 150, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
 }
 
 .modal-content {
@@ -103,6 +161,7 @@
     width: 260px;
     height: 300px;
     border-radius: 10px;
+    z-index: 2;
 
     display: flex;
     flex-direction: column;
@@ -111,14 +170,13 @@
     position: relative;
     margin: 0 auto;
     top: 25%;
+
+    box-shadow: 10px 12px 16px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
 }
 
-.close {
-    color: #db5461;   
-}
-
-#addBtn {
-    color: greenyellow;
+.modal-content:hover {
+    box-shadow: 20px 20px 32px 0 rgba(0, 0, 0, 0.2);
 }
 
 .buttons .material-icons {
@@ -126,16 +184,16 @@
 
 }
 
-.close:hover, .close:focus {
-    color: #db5461;
+.material-icons {
+    cursor: pointer;
 }
-
 
 #myForm {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
+    color: #ededed;
 
 }
 
@@ -149,15 +207,14 @@ input {
     padding: 5px;
 }
 
-
 #plusBtn {
-    color: var(--seco);
-    font-size: 80px;
+    color: #ededed;
+    font-size: 90px;
     cursor: pointer;
 }
+
 #plusBtn:hover {
-    font-size: 90px;
-    color: var(--seco);
+    color: #db5461;
 }
 
 .buttons {
@@ -170,19 +227,11 @@ input {
 }
 
 .close {
-    color: #db5461;   
+    color: #ededee;   
 }
 
 #addBtn {
-    color: greenyellow;
-}
-
-.buttons .material-icons {
-    font-size: 40px;
-}
-
-.buttons .material-icons:hover {
-    font-size: 42px;
+    color: #ededed;
 }
 
 a, a:visited {
@@ -193,13 +242,32 @@ a:hover {
     color: greenyellow;
 }
 
+/* .cardDeleteButton {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ededed;
+    
+    font-weight: bold;
 
+    border: 1px solid var(--seco);
+    border-radius: 100px;
+    cursor: pointer;
+    background-color: var(--seco);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.cardDeleteButton:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+} */
 
 .content::-webkit-scrollbar {
     background-color: var(--bg);
     width: 10px;
 }
-
 /*.content::-webkit-scrollbar-track:hover {
     background-color: #d0b17a;
 }
@@ -210,11 +278,6 @@ a:hover {
     border-radius: 20px;
 }
 
-
-
-
-
-
 /* 
 #db5461
 #34a2a4
@@ -223,4 +286,10 @@ a:hover {
 #F5C396
 #D0B17A
 #A89F68
+
+
+    --head: #fbd794;
+    --bg: #F5FDC6;
+    --books: #F5C396;
+    --seco: #34a2a4;
 */
